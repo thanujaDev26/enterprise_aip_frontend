@@ -6,17 +6,16 @@ import {
   Grid,
   Button,
   Paper,
-  Divider,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import TextFieldControl from "../../components/common/TextFieldControl";
 import Loader from "../../components/common/Loader";
 import EmptyState from "../../components/common/EmptyState";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import AssetCard from "./AssetCard";
+import AssetCreate from "./AssetCreate";
 
 export default function AssetList() {
   const [projectCode, setProjectCode] = useState("PRJ-001");
@@ -24,16 +23,6 @@ export default function AssetList() {
   const [loading, setLoading] = useState(false);
 
   const [openCreate, setOpenCreate] = useState(false);
-  const [newAsset, setNewAsset] = useState({
-    name: "",
-    type: "",
-    replacementCost: 0,
-    currentValue: 0,
-    healthIndex: 0,
-    initialInvestment: 0,
-    roi: 0,
-    projectCode: projectCode,
-  });
 
   const loadAssets = async () => {
     try {
@@ -48,70 +37,88 @@ export default function AssetList() {
     }
   };
 
-  const handleCreateChange = (e) =>
-    setNewAsset({ ...newAsset, [e.target.name]: e.target.value });
-
-  const handleCreateAsset = async () => {
-    try {
-      setLoading(true);
-      await assetApi.create({ ...newAsset, projectCode });
-      alert("Asset created successfully");
-      setOpenCreate(false);
-      setNewAsset({
-        name: "",
-        type: "",
-        replacementCost: 0,
-        currentValue: 0,
-        healthIndex: 0,
-        initialInvestment: 0,
-        roi: 0,
-        projectCode: projectCode,
-      });
-      loadAssets();
-    } catch (err) {
-      console.error(err);
-      alert("Failed to create asset");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <DashboardLayout>
       <Typography variant="h4" fontWeight={700} mb={3} color="#000">
         Assets
       </Typography>
 
-      {/* Search Bar & Buttons */}
       <Paper
         elevation={0}
         sx={{
           p: 3,
           mb: 4,
           borderRadius: 3,
-          backgroundColor: "#fafafa",
-          width: "100%",
+          backgroundColor: "#fff",
+          border: "1px solid #e0e0e0",
         }}
       >
-        <Box display="flex" gap={2} flexWrap="wrap" width="100%">
-          <TextFieldControl
-            label="Project Code"
-            name="projectCode"
-            value={projectCode}
-            onChange={(e) => setProjectCode(e.target.value)}
-            fullWidth
-          />
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          alignItems="center"
+          gap={2}
+          width="100%"
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              border: "1px solid #d0d0d0",
+              borderRadius: "10px",
+              px: 2,
+              py: 1.2,
+              flex: 1,
+              background: "#fafafa",
+              transition: "0.2s",
+              "&:focus-within": {
+                borderColor: "#000",
+                background: "#fff",
+              },
+            }}
+          >
+            <Typography variant="body1" fontWeight={700} color="#000" sx={{ mr: 1 }}>
+              PRJ-
+            </Typography>
+
+            <input
+              value={projectCode.replace("PRJ-", "")}
+              onChange={(e) => setProjectCode(`PRJ-${e.target.value}`)}
+              placeholder="Enter project code..."
+              style={{
+                border: "none",
+                outline: "none",
+                flex: 1,
+                fontSize: "16px",
+                background: "transparent",
+              }}
+            />
+          </Box>
+
           <Button
             variant="contained"
             onClick={loadAssets}
-            sx={{ px: 4, fontWeight: 600 }}
+            sx={{
+              px: 4,
+              fontWeight: 600,
+              borderRadius: "10px",
+              background: "#000",
+              "&:hover": { background: "#333" },
+            }}
           >
             Search
           </Button>
+
           <Button
             variant="outlined"
             onClick={() => setOpenCreate(true)}
-            sx={{ px: 4, fontWeight: 600 }}
+            sx={{
+              border: "1px solid black",
+              color: "black",
+              px: 4,
+              fontWeight: 600,
+              borderRadius: "10px",
+            }}
           >
             Create Asset
           </Button>
@@ -125,87 +132,29 @@ export default function AssetList() {
       ) : (
         <Grid container spacing={3}>
           {assets.map((a) => (
-            <Grid item xs={12} key={a.id}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={a.id}
+              display="flex"
+              justifyContent="center"
+            >
+              {/* AssetCard has View Details which links to /assets/:id */}
               <AssetCard asset={a} />
             </Grid>
           ))}
         </Grid>
       )}
 
-      {/* Create Asset Dialog */}
-      <Dialog
-        open={openCreate}
-        onClose={() => setOpenCreate(false)}
-        fullWidth
-        maxWidth="sm"
-        PaperProps={{ sx: { borderRadius: 4 } }}
-      >
+      <Dialog open={openCreate} onClose={() => setOpenCreate(false)} fullWidth maxWidth="sm">
         <DialogTitle>Create New Asset</DialogTitle>
         <DialogContent dividers>
-          <Box display="flex" flexDirection="column" gap={2}>
-            <TextFieldControl
-              label="Asset Name"
-              name="name"
-              value={newAsset.name}
-              onChange={handleCreateChange}
-              fullWidth
-            />
-            <TextFieldControl
-              label="Type"
-              name="type"
-              value={newAsset.type}
-              onChange={handleCreateChange}
-              fullWidth
-            />
-            <TextFieldControl
-              label="Replacement Cost"
-              type="number"
-              name="replacementCost"
-              value={newAsset.replacementCost}
-              onChange={handleCreateChange}
-              fullWidth
-            />
-            <TextFieldControl
-              label="Current Value"
-              type="number"
-              name="currentValue"
-              value={newAsset.currentValue}
-              onChange={handleCreateChange}
-              fullWidth
-            />
-            <TextFieldControl
-              label="Health Index"
-              type="number"
-              name="healthIndex"
-              value={newAsset.healthIndex}
-              onChange={handleCreateChange}
-              fullWidth
-            />
-            <TextFieldControl
-              label="Initial Investment"
-              type="number"
-              name="initialInvestment"
-              value={newAsset.initialInvestment}
-              onChange={handleCreateChange}
-              fullWidth
-            />
-            <TextFieldControl
-              label="ROI"
-              type="number"
-              name="roi"
-              value={newAsset.roi}
-              onChange={handleCreateChange}
-              fullWidth
-            />
-          </Box>
+          <AssetCreate onCreated={() => { setOpenCreate(false); loadAssets(); }} />
         </DialogContent>
-        <DialogActions sx={{ justifyContent: "center", gap: 2 }}>
-          <Button variant="outlined" onClick={() => setOpenCreate(false)}>
-            Cancel
-          </Button>
-          <Button variant="contained" onClick={handleCreateAsset}>
-            Save Asset
-          </Button>
+        <DialogActions>
+          <Button onClick={() => setOpenCreate(false)}>Close</Button>
         </DialogActions>
       </Dialog>
     </DashboardLayout>
