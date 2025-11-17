@@ -6,25 +6,39 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { Link as RouterLink } from "react-router-dom";
 
+
+const getStatusStyle = (status) => {
+  const styles = {
+    DRAFT: { backgroundColor: "gray", color: "white" },
+    PLANNING: { backgroundColor: "#3d98d6", color: "white" },
+    APPROVED: { backgroundColor: "#31a768", color: "white" },
+    EXECUTING: { backgroundColor: "#c1ff72", color: "black" },
+    ON_HOLD: { backgroundColor: "#e8678f", color: "white" },
+    CLOSED: { backgroundColor: "#ff751f", color: "black", border: "1px solid #ccc" },
+    CANCELLED: { backgroundColor: "#f93d3a", color: "white" },
+  };
+
+  return styles[status] || { backgroundColor: "gray", color: "white" };
+};
+
 export default function ProjectCard({ project }) {
   return (
     <Paper
       elevation={0}
       sx={{
-        width: 360,     
-        flex: 2,           
-        height: 360,       
+        width: 360,
+        flex: 2,
+        height: 360,
         p: 3,
-        border: "1px solid #e0e0e0",
-        borderRadius: "12px",
+        border: "1px solid #338BC5FF",
+        borderRadius: 0,
         background: "#FFFFFFFF",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         transition: "0.2s ease",
         "&:hover": {
-          border: "1px solid",
-          borderColor: "#000",
+          border: "1px solid #338BC5FF",
           background: "#fff",
         },
       }}
@@ -54,19 +68,21 @@ export default function ProjectCard({ project }) {
 
       <Divider sx={{ my: 2 }} />
 
+      {/* ⭐ STATUS WITH COLOR MAP */}
       <Box display="flex" justifyContent="space-between" mb={1}>
         <Typography fontSize={14} fontWeight={600}>
           Status
         </Typography>
+
         <Typography
           fontSize={13}
           fontWeight={700}
           sx={{
             px: 1.5,
             py: 0.5,
-            borderRadius: "6px",
-            bgcolor: "#000",
-            color: "#fff",
+            borderRadius: 0,
+            textTransform: "uppercase",
+            ...getStatusStyle(project.status),  // APPLY COLORS HERE
           }}
         >
           {project.status}
@@ -77,7 +93,10 @@ export default function ProjectCard({ project }) {
         <Typography fontSize={14} fontWeight={600}>
           Budget
         </Typography>
-        <Typography fontSize={14}>{project.approvedBudget}</Typography>
+
+        <Typography fontSize={14}>
+          ${Number(project.approvedBudget || 0).toLocaleString()}
+        </Typography>
       </Box>
 
       <Button
@@ -86,13 +105,13 @@ export default function ProjectCard({ project }) {
         to={`/projects/${project.code}`}
         sx={{
           mt: 2,
-          border: "1px solid #000",
-          borderRadius: "8px",
+          border: "1px solid black",
+          borderRadius: 0,
           textTransform: "none",
           color: "#000",
           fontWeight: 600,
           "&:hover": {
-            background: "#000",
+            background: "black",
             color: "#fff",
           },
         }}

@@ -13,7 +13,7 @@ export default function MainDashboard() {
         sx={{
           mb: 3,
           p: 3,
-          borderRadius: "16px",
+          borderRadius: 0,
           background: "linear-gradient(135deg, #0A0F1F, #1E2A47)",
           color: "white",
           textAlign: "center",

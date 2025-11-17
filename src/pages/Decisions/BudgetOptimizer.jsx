@@ -55,7 +55,7 @@ export default function BudgetOptimizer() {
             border: "1px solid black",
             color: "black",
             px: 3,
-            borderRadius: "10px",
+            borderRadius: 0,
             fontWeight: 600,
             "&:hover": { background: "#f3f3f3" },
           }}
@@ -92,7 +92,7 @@ export default function BudgetOptimizer() {
               display: "flex",
               alignItems: "center",
               border: "1px solid #d0d0d0",
-              borderRadius: "10px",
+              borderRadius: 0,
               px: 2,
               py: 1.2,
               flex: 1,
@@ -110,7 +110,7 @@ export default function BudgetOptimizer() {
               color="#000"
               sx={{ mr: 1 }}
             >
-              PRJ-
+              PRJ - 
             </Typography>
 
             <input
@@ -135,7 +135,7 @@ export default function BudgetOptimizer() {
               display: "flex",
               alignItems: "center",
               border: "1px solid #d0d0d0",
-              borderRadius: "10px",
+              borderRadius: 0,
               px: 2,
               py: 1.2,
               width: "200px",
@@ -168,7 +168,7 @@ export default function BudgetOptimizer() {
             sx={{
               px: 4,
               fontWeight: 600,
-              borderRadius: "10px",
+              borderRadius: 0,
               background: "#000",
               "&:hover": { background: "#333" },
             }}
@@ -187,7 +187,7 @@ export default function BudgetOptimizer() {
           elevation={0}
           sx={{
             p: 3,
-            borderRadius: 3,
+            borderRadius: 0,
             backgroundColor: "#fff",
             border: "1px solid #e0e0e0",
           }}
@@ -206,10 +206,10 @@ export default function BudgetOptimizer() {
 
           <TableContainer
             component={Paper}
-            sx={{ borderRadius: 2, overflow: "hidden" }}
+            sx={{ borderRadius: 0, overflow: "hidden" }}
           >
             <Table>
-              <TableHead sx={{ background: "#f5f5f5" }}>
+              <TableHead sx={{ background: "#f5f5f5", borderRadius:0 }}>
                 <TableRow>
                   <TableCell>
                     <strong>Asset Name</strong>

@@ -41,17 +41,77 @@ export default function Login() {
   };
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-      <Paper sx={{ p: 4, width: 420 }} elevation={3}>
-        <Typography variant="h6" mb={2}>Login</Typography>
-        <form onSubmit={handleSubmit}>
-          <Box mb={2}>
-            <TextFieldControl label="Email" name="email" value={form.email} onChange={handleChange} />
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh" 
+    >
+      <Paper
+        sx={{
+          p: 5,
+          width: 420,
+          borderRadius: 0,
+          backgroundColor: '#fff',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+
+        <Box mb={3}>
+          <img
+            src="/main.png" 
+            alt="Logo"
+            style={{ width: 200, height: 'auto', display: 'block', margin: '0 auto' }}
+          />
+        </Box>
+
+        <Typography variant="h5" fontWeight={700} mb={4} color="#000">
+          Welcome to Loop - AIP Portal
+        </Typography>
+
+        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+          <Box mb={3}>
+            <TextFieldControl
+              label="Email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              sx={{
+                '& .MuiInputBase-root': { color: '#000' },
+                '& .MuiInputLabel-root': { color: '#555' },
+              }}
+            />
           </Box>
-          <Box mb={2}>
-            <TextFieldControl label="Password" name="password" type="password" value={form.password} onChange={handleChange} />
+          <Box mb={3}>
+            <TextFieldControl
+              label="Password"
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              sx={{
+                '& .MuiInputBase-root': { color: '#000' },
+                '& .MuiInputLabel-root': { color: '#555' },
+              }}
+            />
           </Box>
-          <Button type="submit" variant="contained" fullWidth disabled={loading}>
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            disabled={loading}
+            sx={{
+              borderRadius: 0,
+              backgroundColor: '#000',
+              color: '#fff',
+              py: 1.5,
+              fontWeight: 600,
+              '&:hover': { backgroundColor: '#333' },
+            }}
+          >
             {loading ? 'Please wait...' : 'Login'}
           </Button>
         </form>

@@ -15,7 +15,7 @@ export default function AssetCard({ asset }) {
         height: 360,
         p: 3,
         border: "1px solid #e0e0e0",
-        borderRadius: "12px",
+        borderRadius: 0,
         background: "#fff",
         display: "flex",
         flexDirection: "column",
@@ -27,7 +27,6 @@ export default function AssetCard({ asset }) {
         },
       }}
     >
-      {/* Header */}
       <Box>
         <Typography variant="h6" fontWeight={700} sx={{ mb: 0.5 }}>
           {asset.name}
@@ -53,7 +52,6 @@ export default function AssetCard({ asset }) {
 
       <Divider sx={{ my: 2 }} />
 
-      {/* Current Value */}
       <Box display="flex" justifyContent="space-between">
         <Typography fontSize={14} fontWeight={600}>
           Current Value
@@ -63,7 +61,6 @@ export default function AssetCard({ asset }) {
         </Typography>
       </Box>
 
-      {/* Health Index */}
       <Box display="flex" justifyContent="space-between" mt={1}>
         <Typography fontSize={14} fontWeight={600}>
           Health Index
@@ -73,7 +70,6 @@ export default function AssetCard({ asset }) {
         </Typography>
       </Box>
 
-      {/* Button */}
       <Button
         fullWidth
         component={RouterLink}
@@ -81,7 +77,7 @@ export default function AssetCard({ asset }) {
         sx={{
           mt: 2,
           border: "1px solid #000",
-          borderRadius: "8px",
+          borderRadius: 0,
           textTransform: "none",
           color: "#000",
           fontWeight: 600,

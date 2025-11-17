@@ -16,6 +16,7 @@ import Loader from "../../components/common/Loader";
 import EmptyState from "../../components/common/EmptyState";
 import AssetEdit from "./AssetEdit";
 import AssetDeleteConfirm from "./AssetDeleteConfirm";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function AssetDetails() {
   const { id } = useParams();
@@ -70,10 +71,18 @@ export default function AssetDetails() {
         <Box display="flex" gap={2}>
           <Button
             variant="outlined"
+            component={RouterLink}
+            to="/assets"
+            sx={{ fontWeight: 600, background: "black", color: "white",borderRadius: 0, }}
+          >
+            Back
+          </Button>
+          <Button
+            variant="outlined"
             sx={{
               px: 3,
               fontWeight: 600,
-              borderRadius: "12px",
+              borderRadius: 0,
               "&:hover": { background: "#f5f5f5" },
             }}
             onClick={() => setTab(1)}
@@ -86,7 +95,7 @@ export default function AssetDetails() {
             sx={{
               px: 3,
               fontWeight: 600,
-              borderRadius: "12px",
+              borderRadius: 0,
               "&:hover": { background: "#c70000" },
             }}
             onClick={() => setOpenDelete(true)}
@@ -127,45 +136,45 @@ export default function AssetDetails() {
             <Typography color="text.secondary">{asset.type}</Typography>
             <Divider sx={{ my: 1 }} />
 
-            <Grid container spacing={3}>
+            <Grid container spacing={3} justifyContent="center" alignItems="center">
             <Grid item xs={12} sm={6} md={2}>
-                <Paper sx={{ p: 3, borderRadius: 2, background: "#fafafa", textAlign: "center" }}>
+                <Paper sx={{ p: 3, borderRadius: 0, background: "#fafafa", textAlign: "center" }}>
                   <Typography variant="subtitle2" color="text.secondary">Asset Code</Typography>
                   <Typography fontWeight={700} fontSize={18}>{asset.id}</Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6} md={2}>
-                <Paper sx={{ p: 3, borderRadius: 2, background: "#fafafa", textAlign: "center" }}>
+                <Paper sx={{ p: 3, borderRadius: 0, background: "#fafafa", textAlign: "center" }}>
                   <Typography variant="subtitle2" color="text.secondary">Project Code</Typography>
                   <Typography fontWeight={700} fontSize={18}>{asset.projectCode}</Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6} md={2}>
-                <Paper sx={{ p: 3, borderRadius: 2, background: "#fafafa", textAlign: "center" }}>
+                <Paper sx={{ p: 3, borderRadius: 0, background: "#fafafa", textAlign: "center" }}>
                   <Typography variant="subtitle2" color="text.secondary">Replacement Cost</Typography>
                   <Typography fontWeight={700} fontSize={18}>${asset.replacementCost?.toLocaleString()}</Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6} md={2}>
-                <Paper sx={{ p: 3, borderRadius: 2, background: "#fafafa", textAlign: "center" }}>
+                <Paper sx={{ p: 3, borderRadius: 0, background: "#fafafa", textAlign: "center" }}>
                   <Typography variant="subtitle2" color="text.secondary">Current Value</Typography>
                   <Typography fontWeight={700} fontSize={18}>${asset.currentValue?.toLocaleString()}</Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6} md={2}>
-                <Paper sx={{ p: 3, borderRadius: 2, background: "#fafafa", textAlign: "center" }}>
+                <Paper sx={{ p: 3, borderRadius: 0, background: "#fafafa", textAlign: "center" }}>
                   <Typography variant="subtitle2" color="text.secondary">Initial Investment</Typography>
                   <Typography fontWeight={700} fontSize={18}>${asset.initialInvestment?.toLocaleString()}</Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6} md={2}>
-                <Paper sx={{ p: 3, borderRadius: 2, background: "#fafafa", textAlign: "center" }}>
+                <Paper sx={{ p: 3, borderRadius: 0, background: "#fafafa", textAlign: "center" }}>
                   <Typography variant="subtitle2" color="text.secondary">ROI</Typography>
                   <Typography fontWeight={700} fontSize={18}>${asset.roi?.toLocaleString()}</Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={6} md={2}>
-                <Paper sx={{ p: 3, borderRadius: 2, background: "#fafafa", textAlign: "center" }}>
+                <Paper sx={{ p: 3, borderRadius: 0, background: "#fafafa", textAlign: "center" }}>
                   <Typography variant="subtitle2" color="text.secondary">Health Index</Typography>
                   <Typography fontWeight={700} fontSize={18}>{asset.healthIndex}%</Typography>
                 </Paper>

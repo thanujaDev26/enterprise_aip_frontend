@@ -25,6 +25,8 @@ export default function ProjectDetails() {
         setLoading(true);
         const res = await projectApi.get(code);
         setProject(res?.data?.data || null);
+        const response = res.data.data
+        console.log(response)
       } catch (err) {
         console.error(err);
       } finally {
@@ -50,15 +52,18 @@ export default function ProjectDetails() {
   };
 
   const getStatusStyle = (status) => {
-    const colors = {
-      PLANNING: { bgcolor: "#000", color: "#fff" },
-      InProgress: { bgcolor: "#555", color: "#fff" },
-      Completed: { bgcolor: "#00a000", color: "#fff" },
-      OnHold: { bgcolor: "#999", color: "#fff" },
-      Cancelled: { bgcolor: "#f00", color: "#fff" },
-    };
-    return colors[status] || { bgcolor: "#eee", color: "#000" };
+  const styles = {
+    DRAFT: { backgroundColor: "gray", color: "white" },
+    PLANNING: { backgroundColor: "#3d98d6", color: "white" },
+    APPROVED: { backgroundColor: "#31a768", color: "white" },
+    EXECUTING: { backgroundColor: "#c1ff72", color: "black" },
+    ON_HOLD: { backgroundColor: "#e8678f", color: "white" },
+    CLOSED: { backgroundColor: "#ff751f", color: "black", border: "1px solid #ccc" },
+    CANCELLED: { backgroundColor: "#f93d3a", color: "white" },
   };
+
+  return styles[status] || { backgroundColor: "gray", color: "white" };
+};
 
   return (
     <DashboardLayout>
@@ -71,7 +76,7 @@ export default function ProjectDetails() {
         sx={{
           p: 4,
           border: "1px solid #e0e0e0",
-          borderRadius: "12px",
+          borderRadius: 0,
           background: "#fafafa",
           maxWidth: 800,
           mx: "auto",
@@ -95,7 +100,7 @@ export default function ProjectDetails() {
                 </Typography>
                 <Typography
                   variant="body2"
-                  sx={{ color: "#555", fontWeight: 500 }}
+                  sx={{ color: "#555", fontWeight: 500, fontSize: "110%" }}
                 >
                   Code: {project.code}
                 </Typography>
@@ -106,7 +111,7 @@ export default function ProjectDetails() {
                   variant="outlined"
                   component={RouterLink}
                   to={`/projects`}
-                  sx={{ fontWeight: 600, background: "black", color: "white" }}
+                  sx={{ fontWeight: 600, background: "black", color: "white",borderRadius: 0, }}
                 >
                   Back
                 </Button>
@@ -114,7 +119,7 @@ export default function ProjectDetails() {
                   variant="outlined"
                   component={RouterLink}
                   to={`/projects/edit/${project.code}`}
-                  sx={{ fontWeight: 600 }}
+                  sx={{ fontWeight: 600, borderRadius: 0, }}
                 >
                   Edit
                 </Button>
@@ -123,6 +128,7 @@ export default function ProjectDetails() {
                   variant="contained"
                   sx={{
                     background: "#c70000",
+                    borderRadius: 0,
                     "&:hover": { background: "#a00000" },
                     fontWeight: 600,
                   }}
@@ -155,7 +161,7 @@ export default function ProjectDetails() {
                       textTransform: "uppercase",
                       px: 1.5,
                       py: 0.5,
-                      borderRadius: "6px",
+                      borderRadius: 0,
                     }}
                   />
                 </Box>

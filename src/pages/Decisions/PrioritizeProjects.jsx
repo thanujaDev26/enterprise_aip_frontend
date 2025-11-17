@@ -71,11 +71,8 @@ export default function PrioritizeProjects() {
     fetchSummary(project.projectCode);
   };
 
-  // ──────────────────────────────────────
-  // Dynamically highlight the factor(s) that contributed most
-  // ──────────────────────────────────────
+
   const getMaxContributors = (row) => {
-    // assuming row has risk, avgHealth, roi, utilization
     const contributions = {
       Risk: row.risk,
       Health: row.avgHealth,
@@ -92,7 +89,7 @@ export default function PrioritizeProjects() {
         variant="outlined"
         component={RouterLink}
         to="/decisions"
-        sx={{ fontWeight: 600, background: "black", color: "white" }}
+        sx={{ fontWeight: 600, background: "black", color: "white", borderRadius: 0, }}
       >
         Back
       </Button>
@@ -102,9 +99,8 @@ export default function PrioritizeProjects() {
       </Typography>
 
       <Box display="flex" gap={3} flexDirection={{ xs: "column", md: "row" }}>
-        {/* LEFT PANEL – FORM */}
         <Box flex={1}>
-          <Paper sx={{ p: 3, borderRadius: 3, boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
+          <Paper sx={{ p: 2, borderRadius: 0, boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
             <form onSubmit={handleSubmit}>
               <Box display="flex" flexDirection="column" gap={2} mb={3}>
                 <TextFieldControl label="Risk Weight" name="weightRisk" value={form.weightRisk} onChange={handleChange} type="number" />
@@ -120,7 +116,7 @@ export default function PrioritizeProjects() {
                 fullWidth
                 sx={{
                   py: 1.5,
-                  borderRadius: 2,
+                  borderRadius: 0,
                   fontWeight: 600,
                   background: "#000",
                   "&:hover": { background: "#333" },
@@ -132,9 +128,8 @@ export default function PrioritizeProjects() {
           </Paper>
         </Box>
 
-        {/* RIGHT PANEL – SUMMARY */}
         <Box flex={1}>
-          <Paper sx={{ p: 3, minHeight: "320px", borderRadius: 3, boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
+          <Paper sx={{ p: 3, minHeight: "320px", borderRadius: 0, boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
             <Typography variant="h6" fontWeight={700} mb={2}>
               Project Summary
             </Typography>
@@ -183,13 +178,10 @@ export default function PrioritizeProjects() {
         </Box>
       </Box>
 
-      {/* ────────────────────────────── */}
-      {/* RESULTS TABLE */}
-      {/* ────────────────────────────── */}
       {results.length === 0 ? (
         <EmptyState title="No results" subtitle="Run the prioritization to see results" sx={{ mt: 5 }} />
       ) : (
-        <TableContainer component={Paper} sx={{ mt: 4, borderRadius: 3, boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
+        <TableContainer component={Paper} sx={{ mt: 4, borderRadius: 0, boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
           <Table>
             <TableHead>
               <TableRow>
@@ -235,7 +227,7 @@ export default function PrioritizeProjects() {
                     <TableCell align="right">
                       <Tooltip title={`Contribution: ${r.utilization}`} arrow>
                         <span style={{ color: maxContributors.includes("Utilization") ? "green" : "inherit", fontWeight: maxContributors.includes("Utilization") ? 600 : 400 }}>
-                          {r.utilization}
+                          {(r.utilization * 100).toFixed(2)}
                         </span>
                       </Tooltip>
                     </TableCell>

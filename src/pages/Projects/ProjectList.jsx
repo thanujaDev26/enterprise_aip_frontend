@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { projectApi } from "../../api/projectApi";
-import { Box, Button, Typography, Divider,Grid } from "@mui/material";
+import { Box, Button, Typography, Grid } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import Loader from "../../components/common/Loader";
 import EmptyState from "../../components/common/EmptyState";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import ProjectCard from "./ProjectCard";
-
 
 export default function ProjectList() {
   const [projects, setProjects] = useState([]);
@@ -30,8 +29,17 @@ export default function ProjectList() {
 
   return (
     <DashboardLayout>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        <Typography variant="h4" sx={{ fontWeight: 700, color: "#000" }}>
+      <Box 
+        display="flex" 
+        justifyContent="space-between" 
+        alignItems="center" 
+        mb={3}
+      >
+        <Typography variant="h4" sx={{ 
+          fontWeight: 800, 
+          color: "#000", 
+          letterSpacing: "-0.5px"
+        }}>
           Projects
         </Typography>
 
@@ -41,28 +49,35 @@ export default function ProjectList() {
           to="/projects/create"
           sx={{
             background: "#000",
-            fontWeight: 600,
-            borderRadius: "10px",
-            "&:hover": { background: "#000" },
+            color: "white",
+            fontWeight: 700,
+            px: 3,
+            py: 1,
+            borderRadius: 0,
+            "&:hover": {
+              background: "#282828FF",
+              color: "#fff"
+            },
           }}
         >
-          Create
+          + New Project
         </Button>
       </Box>
 
+      {/* Content: Loader / Empty / Grid */}
       {loading ? (
         <Loader />
       ) : projects.length === 0 ? (
-        <EmptyState title="No projects" />
+        <EmptyState title="No projects available" />
       ) : (
         <Grid container spacing={3}>
           {projects.map((project) => (
-            <Grid
-              item xs={12} sm={6} md={4}
+            <Grid 
+              item 
+              xs={12} sm={6} md={4} 
               key={project.code}
-              sx={{ display: "flex" }}  
             >
-              <ProjectCard project={project} sx={{ flex: 1 }} />  
+              <ProjectCard project={project} />
             </Grid>
           ))}
         </Grid>

@@ -25,24 +25,21 @@ export default function DecisionMaker({ selectedAssets = [], budgetCap }) {
       sx={{
         mt: 4,
         p: 3,
-        borderRadius: 3,
+        borderRadius: 0,
         border: "1px solid #dcdcdc",
         background: "#fafafa",
       }}
     >
-      {/* Title */}
       <Typography variant="h5" fontWeight={700} mb={2} color="#000">
         Automatic Decision Maker
       </Typography>
 
-      {/* Explanation */}
       <Typography mb={3} color="#444" fontSize="15px">
         Based on the scores and your budget limit, here is a clear and simple 
         explanation of which assets should be considered first, and how your 
         available budget affects the purchasing order.
       </Typography>
 
-      {/* Priority Order */}
       <Box mb={2}>
         <Typography fontWeight={700} mb={1}>
           Priority Order (from most important to least important):
@@ -57,18 +54,18 @@ export default function DecisionMaker({ selectedAssets = [], budgetCap }) {
                 background: "#fff",
                 border: "1px solid #000",
                 fontWeight: 600,
+                borderRadius: 0,
               }}
             />
           ))}
         </Box>
       </Box>
 
-      {/* What You Can Buy */}
       <Box
         mt={3}
         p={2}
         sx={{
-          borderRadius: 2,
+          borderRadius: 0,
           border: "1px solid black",
           background: "#fff",
         }}
@@ -104,13 +101,12 @@ export default function DecisionMaker({ selectedAssets = [], budgetCap }) {
         </Typography>
       </Box>
 
-      {/* What You Cannot Buy */}
       {cannotBuy.length > 0 && (
         <Box
           mt={3}
           p={2}
           sx={{
-            borderRadius: 2,
+            borderRadius: 0,
             border: "1px solid #d0d0d0",
             background: "#f8f8f8",
           }}
@@ -139,8 +135,7 @@ export default function DecisionMaker({ selectedAssets = [], budgetCap }) {
         </Box>
       )}
 
-      {/* Final Recommendation */}
-      <Box mt={4} p={2} sx={{ background: "#fff", borderRadius: 2 }}>
+      <Box mt={4} p={2} sx={{ background: "#fff", borderRadius: 0 }}>
         <Typography fontWeight={700} mb={1}>
           Final Recommendation
         </Typography>
