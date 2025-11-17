@@ -6,4 +6,6 @@ export const projectApi = {
   get: (code) => axiosClient.get(`/projects/${code}`),
   update: (code, payload) => axiosClient.put(`/projects/${code}`, payload),
   delete: (code) => axiosClient.delete(`/projects/${code}`),
+  getAssetSummary: (projectCode) =>
+    axiosClient.get(`/assets/summary/${projectCode}`),
 };
