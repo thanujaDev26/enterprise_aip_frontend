@@ -100,21 +100,6 @@ export default function ProjectCreate() {
               placeholder="e.g., 6000000"
             />
 
-            {/* <TextFieldControl
-              select
-              label="Status"
-              name="status"
-              value={form.status}
-              onChange={handleChange}
-              fullWidth
-            >
-              <MenuItem value="PLANNING">Planning</MenuItem>
-              <MenuItem value="EXECUTING">In Progress</MenuItem>
-              <MenuItem value="COMPLETED">Completed</MenuItem>   
-              <MenuItem value="ON_HOLD">On Hold</MenuItem>
-              <MenuItem value="CANCELLED">Cancelled</MenuItem>
-            </TextFieldControl> */}
-
             <TextFieldControl
               select
               label="Status"
@@ -161,30 +146,13 @@ export default function ProjectCreate() {
 
           <Divider sx={{ mb: 3, borderColor: "#e0e0e0" }} />
 
-          {/* <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            disabled={loading}
-            sx={{
-              background: "#000",
-              fontWeight: 600,
-              borderRadius: "12px",
-              textTransform: "none",
-              py: 1.5,
-              fontSize: "16px",
-              "&:hover": { background: "#333" },
-            }}
-          >
-            {loading ? "Saving Project..." : "Save Project"}
-          </Button> */}
           <Box display="flex" gap={2} mt={3}>
             <Button
               variant="outlined"
               fullWidth
               onClick={() => navigate("/projects")}
               sx={{
-                borderRadius: "12px",
+                borderRadius: 0,
                 textTransform: "none",
                 py: 1.5,
                 fontSize: "16px",
@@ -204,7 +172,7 @@ export default function ProjectCreate() {
               sx={{
                 background: "#000",
                 fontWeight: 600,
-                borderRadius: "12px",
+                borderRadius: 0,
                 textTransform: "none",
                 py: 1.5,
                 fontSize: "16px",

@@ -88,7 +88,7 @@ export default function AssetCreate({ onCreated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ borderRadius:0 }}>
       <Box display="flex" flexDirection="column" gap={2}>
         <TextFieldControl
           label="Asset Name"
@@ -161,13 +161,13 @@ export default function AssetCreate({ onCreated }) {
             display: "flex",
             alignItems: "center",
             border: "1px solid #ddd",
-            borderRadius: 2,
+            borderRadius: 0,
             px: 2,
             py: 1.2,
           }}
         >
           <Typography fontWeight={700} color="#000" sx={{ mr: 1 }}>
-            PRJ-
+            PRJ - 
           </Typography>
 
           <input
@@ -196,7 +196,7 @@ export default function AssetCreate({ onCreated }) {
             sx={{
               flex: 1,
               py: 1.5,
-              borderRadius: 2,
+              borderRadius: 0,
               fontWeight: 600,
               background: "#000",
               color: "#fff",
@@ -212,7 +212,7 @@ export default function AssetCreate({ onCreated }) {
             sx={{
               flex: 1,
               py: 1.5,
-              borderRadius: 2,
+              borderRadius: 0,
               fontWeight: 600,
               background: "#fff",
               color: "#000",

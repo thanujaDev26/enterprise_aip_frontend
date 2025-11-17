@@ -4,17 +4,17 @@ import { dashboardApi } from '../../api/dashboardApi';
 
 const statusColors = {
   DRAFT: "#9e9e9e",
-  PLANNING: "#2196f3",
-  APPROVED: "#4caf50",
-  EXECUTING: "#ff9800",
-  ON_HOLD: "#f44336",
-  CLOSED: "#673ab7",
-  CANCELLED: "#e91e63",
+  PLANNING: "#3d98d6",
+  APPROVED: "#31a768",
+  EXECUTING: "#c1ff72",
+  ON_HOLD: "#e8678f",
+  CLOSED: "#ff751f",
+  CANCELLED: "#f93d3a",
 };
 
 const glassCard = {
   p: 4,
-  borderRadius: "20px",
+  borderRadius: 0,  
   backdropFilter: "blur(12px)",
   background: "rgba(255, 255, 255, 0.12)",
   border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -50,15 +50,14 @@ function StatDashboard() {
     projectStats &&
     Object.values(projectStats).reduce((sum, val) => sum + val, 0);
 
-    const formatStatus = (str) => {
-        if (!str) return "";
-        return str
-            .toLowerCase()
-            .split("_")
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
-    };
-
+  const formatStatus = (str) => {
+    if (!str) return "";
+    return str
+      .toLowerCase()
+      .split("_")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   return (
     <div>
@@ -82,9 +81,14 @@ function StatDashboard() {
             return (
               <Grid 
                 item 
-                xs={12} sm={6} md={4} 
+                xs={12} sm={6} md={4}
                 key={key}
-                sx={{ height: "100%", width: "200px" }}
+                sx={{ 
+                  height: "100%", 
+                  width: "200px", 
+                  border: "1px solid #3d98d6", 
+                  borderRadius: 0
+                }}
               >
                 <Paper sx={glassCard}>
                   <Typography variant="subtitle1" fontWeight="600">
@@ -100,7 +104,7 @@ function StatDashboard() {
                     value={progress}
                     sx={{
                       height: 10,
-                      borderRadius: 5,
+                      borderRadius: 0,  
                       backgroundColor: "rgba(255,255,255,0.2)",
                       "& .MuiLinearProgress-bar": { backgroundColor: color },
                     }}

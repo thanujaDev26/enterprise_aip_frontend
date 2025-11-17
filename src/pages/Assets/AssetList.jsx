@@ -65,7 +65,7 @@ export default function AssetList() {
               display: "flex",
               alignItems: "center",
               border: "1px solid #d0d0d0",
-              borderRadius: "10px",
+              borderRadius: 0,
               px: 2,
               py: 1.2,
               flex: 1,
@@ -78,7 +78,7 @@ export default function AssetList() {
             }}
           >
             <Typography variant="body1" fontWeight={700} color="#000" sx={{ mr: 1 }}>
-              PRJ-
+              PRJ - 
             </Typography>
 
             <input
@@ -101,7 +101,7 @@ export default function AssetList() {
             sx={{
               px: 4,
               fontWeight: 600,
-              borderRadius: "10px",
+              borderRadius: 0,
               background: "#000",
               "&:hover": { background: "#333" },
             }}
@@ -117,7 +117,7 @@ export default function AssetList() {
               color: "black",
               px: 4,
               fontWeight: 600,
-              borderRadius: "10px",
+              borderRadius: 0,
             }}
           >
             Create Asset

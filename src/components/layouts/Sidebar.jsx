@@ -42,12 +42,12 @@ export default function Sidebar() {
           overflowX: "hidden",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between", // ensures logout stays at bottom
+          justifyContent: "space-between", 
           height: "100%",
         },
       }}
     >
-      {/* Logo + Menu */}
+
       <Box>
         <Box
           sx={{
@@ -76,7 +76,7 @@ export default function Sidebar() {
               end
               sx={{
                 mb: 1.5,
-                borderRadius: "12px",
+                borderRadius: 0,
                 paddingY: 1.3,
                 paddingLeft: 2,
                 textDecoration: "none",
@@ -116,12 +116,11 @@ export default function Sidebar() {
         </List>
       </Box>
 
-      {/* Logout Button */}
       <Box sx={{ px: 2, pb: 3 }}>
         <ListItemButton
           onClick={handleLogout}
           sx={{
-            borderRadius: "12px",
+            borderRadius: 0,
             paddingY: 1.3,
             paddingLeft: 2,
             color: "#000",
@@ -140,6 +139,7 @@ export default function Sidebar() {
           <ListItemText
             primary="Logout"
             sx={{
+              borderRadius: 0,
               "& span": {
                 fontSize: "1rem",
                 fontWeight: 600,

@@ -37,7 +37,7 @@ export default function DecisionDashboard() {
             <Paper
               sx={{
                 p: 3,
-                borderRadius: 3,
+                borderRadius: 0,
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
@@ -68,7 +68,7 @@ export default function DecisionDashboard() {
                   sx={{
                     py: 1.5,
                     fontWeight: 600,
-                    borderRadius: 2,
+                    borderRadius: 0,
                     textTransform: "none",
                     ...(action.type === "contained"
                       ? { background: "#000", "&:hover": { background: "#333" } }
