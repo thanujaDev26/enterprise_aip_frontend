@@ -2,6 +2,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import StatDashboard from "./StatDashboard";
+import LatestNews from "./LatestNews";
 
 
 

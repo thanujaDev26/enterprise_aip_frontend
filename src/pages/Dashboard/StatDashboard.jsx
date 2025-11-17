@@ -50,6 +50,16 @@ function StatDashboard() {
     projectStats &&
     Object.values(projectStats).reduce((sum, val) => sum + val, 0);
 
+    const formatStatus = (str) => {
+        if (!str) return "";
+        return str
+            .toLowerCase()
+            .split("_")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+    };
+
+
   return (
     <div>
       {loading ? (
@@ -78,7 +88,7 @@ function StatDashboard() {
               >
                 <Paper sx={glassCard}>
                   <Typography variant="subtitle1" fontWeight="600">
-                    {statusName.toUpperCase()}
+                    {formatStatus(statusName)}
                   </Typography>
 
                   <Typography variant="h5" fontWeight="700" sx={{ mt: 1, mb: 1 }}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { projectApi } from "../../api/projectApi";
-import { Box, Button, Typography, Divider, Grid } from "@mui/material";
+import { Box, Button, Typography, Divider,Grid } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import Loader from "../../components/common/Loader";
 import EmptyState from "../../components/common/EmptyState";
@@ -58,11 +58,7 @@ export default function ProjectList() {
         <Grid container spacing={3}>
           {projects.map((project) => (
             <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
+              item xs={12} sm={6} md={4}
               key={project.code}
               sx={{ display: "flex" }}  
             >
