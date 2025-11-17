@@ -15,6 +15,8 @@ import BudgetOptimizer from './pages/Decisions/BudgetOptimizer'
 import NotFound from './pages/NotFound'
 import { Box } from '@mui/material'
 import ProjectEdit from './pages/Projects/ProjectEdit'
+import AssetDetails from './pages/Assets/AssetDetails'
+import AssetEdit from './pages/Assets/AssetEdit'
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path='/projects/edit/:code' element={<ProjectEdit/>}/>
           <Route path='/assets' element={<AssetList/>} />
           <Route path='/assets/create' element={<AssetCreate/>} />
+          <Route path="/assets/:id" element={<AssetDetails />} />
+          <Route path="/assets/:id/edit" element={<AssetEdit />} />
           <Route path='/assets/summary/:projectCode' element={<AssetSummary/>} />
           <Route path='/decisions' element={<DecisionDashboard/>} />
           <Route path='/decisions/prioritize' element={<PrioritizeProjects/>} />

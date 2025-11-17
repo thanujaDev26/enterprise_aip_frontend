@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { assetApi } from '../../api/assetApi';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import DashboardLayout from '../../components/layouts/DashboardLayout';
-import EmptyState from '../../components/common/EmptyState';
 import Loader from '../../components/common/Loader';
+import EmptyState from '../../components/common/EmptyState';
 
-export default function AssetSummary() {
-  const { projectCode } = useParams();
+export default function AssetSummary({ projectCode }) {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -29,18 +26,17 @@ export default function AssetSummary() {
   }, [projectCode]);
 
   return (
-    <DashboardLayout>
-      <Typography variant="h5" mb={2}>Asset Summary for {projectCode}</Typography>
-      <Paper sx={{ p: 2 }}>
-        {loading ? <Loader /> : !summary ? <EmptyState title="No summary" /> : (
-          <Box>
-            <Typography>Asset Count: {summary.assetCount}</Typography>
-            <Typography>Total Replacement Cost: {summary.totalReplacementCost}</Typography>
-            <Typography>Total Current Value: {summary.totalCurrentValue}</Typography>
-            <Typography>Budget Utilization: {summary.budgetUtilizationPct}%</Typography>
-          </Box>
-        )}
-      </Paper>
-    </DashboardLayout>
+    <Paper sx={{ p: 2 }}>
+      <Typography variant="h6" mb={1}>Project Summary</Typography>
+      {!projectCode ? <EmptyState title="No project specified" /> : loading ? <Loader /> : !summary ? <EmptyState title="No summary" /> : (
+        <Box>
+          <Typography><strong>Project:</strong> {summary.projectCode}</Typography>
+          <Typography><strong>Assets:</strong> {summary.assetCount}</Typography>
+          <Typography><strong>Total Replacement:</strong> ${summary.totalReplacementCost?.toLocaleString()}</Typography>
+          <Typography><strong>Total Current Value:</strong> ${summary.totalCurrentValue?.toLocaleString()}</Typography>
+          <Typography><strong>Budget Utilization:</strong> {summary.budgetUtilizationPct}%</Typography>
+        </Box>
+      )}
+    </Paper>
   );
 }
