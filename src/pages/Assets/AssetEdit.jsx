@@ -9,7 +9,7 @@ export default function AssetEdit({ asset, onUpdated }) {
     type: asset.type || "",
     replacementCost: asset.replacementCost || 0,
     currentValue: asset.currentValue || 0,
-    healthIndex: asset.healthIndex || 0,
+    healthIndex: asset.healthIndex || 100, 
     initialInvestment: asset.initialInvestment || 0,
     roi: asset.roi || 0,
     projectCode: asset.projectCode || "",
@@ -83,6 +83,17 @@ export default function AssetEdit({ asset, onUpdated }) {
             required
           />
 
+     
+          <TextFieldControl
+            label="Health Index"
+            name="healthIndex"
+            type="number"
+            value={form.healthIndex}
+            onChange={handleChange}
+            fullWidth
+            inputProps={{ min: 0, max: 100 }}
+          />
+
           <TextFieldControl
             label="Replacement Cost"
             name="replacementCost"
@@ -149,22 +160,42 @@ export default function AssetEdit({ asset, onUpdated }) {
             />
           </Box>
 
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={loading}
-            sx={{
-              mt: 3,
-              px: 5,
-              py: 1.5,
-              borderRadius: 2,
-              fontWeight: 600,
-              background: "#000",
-              "&:hover": { background: "#333" },
-            }}
-          >
-            {loading ? "Saving..." : "Save Changes"}
-          </Button>
+          <Box display="flex" gap={2} mt={3}>
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={loading}
+              sx={{
+                flex: 1,
+                py: 1.5,
+                borderRadius: 2,
+                fontWeight: 600,
+                background: "#000",
+                color: "#fff",
+                "&:hover": { background: "#333" },
+              }}
+            >
+              {loading ? "Saving..." : "Save Changes"}
+            </Button>
+
+            <Button
+              type="button"
+              variant="outlined"
+              onClick={() => onUpdated && onUpdated(null)} 
+              sx={{
+                flex: 1,
+                py: 1.5,
+                borderRadius: 2,
+                fontWeight: 600,
+                background: "#fff",
+                color: "#000",
+                border: "1px solid #000",
+                "&:hover": { background: "#f5f5f5" },
+              }}
+            >
+              Cancel
+            </Button>
+          </Box>
         </Box>
       </Paper>
     </form>

@@ -57,7 +57,7 @@ export default function Sidebar() {
           }}
         >
           <img
-            src="/loop.png"
+            src="/main.png"
             alt="Logo"
             style={{
               width: "100%",

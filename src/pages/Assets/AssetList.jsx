@@ -141,7 +141,6 @@ export default function AssetList() {
               display="flex"
               justifyContent="center"
             >
-              {/* AssetCard has View Details which links to /assets/:id */}
               <AssetCard asset={a} />
             </Grid>
           ))}
@@ -153,9 +152,6 @@ export default function AssetList() {
         <DialogContent dividers>
           <AssetCreate onCreated={() => { setOpenCreate(false); loadAssets(); }} />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenCreate(false)}>Close</Button>
-        </DialogActions>
       </Dialog>
     </DashboardLayout>
   );

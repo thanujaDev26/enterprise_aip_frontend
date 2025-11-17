@@ -5,10 +5,11 @@ import {
   Paper,
   Typography,
   Divider,
+  MenuItem,
+  TextField,
 } from "@mui/material";
 import { assetApi } from "../../api/assetApi";
 import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
 import TextFieldControl from "../../components/common/TextFieldControl";
 
 export default function AssetCreate({ onCreated }) {
@@ -25,6 +26,29 @@ export default function AssetCreate({ onCreated }) {
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const assetTypes = [
+    "IT/SCADA",
+    "Telecom Equipment",
+    "Water Pipeline",
+    "Drainage System",
+    "Road Segment",
+    "Railway Track",
+    "Bridge",
+    "Port Crane",
+    "Shipping Vessel",
+    "Aircraft",
+    "Defense Equipment",
+    "Oil Platform",
+    "Energy Generator",
+    "Renewable Energy Asset",
+    "Logistics Vehicle",
+    "Warehouse Equipment",
+    "Smart Meter",
+    "Electronic Sensor",
+    "Electrical Transformer",
+    "Other",
+  ];
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -66,15 +90,69 @@ export default function AssetCreate({ onCreated }) {
   return (
     <form onSubmit={handleSubmit}>
       <Box display="flex" flexDirection="column" gap={2}>
-        <TextFieldControl label="Asset Name" name="name" value={form.name} onChange={handleChange} required />
-        <TextFieldControl label="Type" name="type" value={form.type} onChange={handleChange} required />
+        <TextFieldControl
+          label="Asset Name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          required
+        />
+
+        
+        <TextField
+          select
+          label="Asset Type"
+          name="type"
+          value={form.type}
+          onChange={handleChange}
+          required
+        >
+          {assetTypes.map((type) => (
+            <MenuItem key={type} value={type}>
+              {type}
+            </MenuItem>
+          ))}
+        </TextField>
 
         <Divider sx={{ my: 1 }} />
 
-        <TextFieldControl label="Replacement Cost" name="replacementCost" type="number" value={form.replacementCost} onChange={handleChange} />
-        <TextFieldControl label="Current Value" name="currentValue" type="number" value={form.currentValue} onChange={handleChange} />
-        <TextFieldControl label="Initial Investment" name="initialInvestment" type="number" value={form.initialInvestment} onChange={handleChange} />
-        <TextFieldControl label="ROI" name="roi" type="number" value={form.roi} onChange={handleChange} />
+        <TextFieldControl
+          label="Health Index"
+          name="healthIndex"
+          type="number"
+          value={form.healthIndex}
+          onChange={handleChange}
+          inputProps={{ min: 0, max: 100 }}
+        />
+
+        <TextFieldControl
+          label="Replacement Cost"
+          name="replacementCost"
+          type="number"
+          value={form.replacementCost}
+          onChange={handleChange}
+        />
+        <TextFieldControl
+          label="Current Value"
+          name="currentValue"
+          type="number"
+          value={form.currentValue}
+          onChange={handleChange}
+        />
+        <TextFieldControl
+          label="Initial Investment"
+          name="initialInvestment"
+          type="number"
+          value={form.initialInvestment}
+          onChange={handleChange}
+        />
+        <TextFieldControl
+          label="ROI"
+          name="roi"
+          type="number"
+          value={form.roi}
+          onChange={handleChange}
+        />
 
         <Divider sx={{ my: 1 }} />
 
@@ -95,16 +173,56 @@ export default function AssetCreate({ onCreated }) {
           <input
             name="projectCode"
             value={form.projectCode.replace("PRJ-", "")}
-            onChange={(e) => setForm({ ...form, projectCode: `PRJ-${e.target.value}` })}
+            onChange={(e) =>
+              setForm({ ...form, projectCode: `PRJ-${e.target.value}` })
+            }
             placeholder="e.g. 102"
-            style={{ flex: 1, border: "none", outline: "none", fontSize: "16px", background: "transparent" }}
+            style={{
+              flex: 1,
+              border: "none",
+              outline: "none",
+              fontSize: "16px",
+              background: "transparent",
+            }}
             required
           />
         </Box>
 
-        <Button type="submit" variant="contained" disabled={loading} sx={{ mt: 1 }}>
-          {loading ? "Saving..." : "Create Asset"}
-        </Button>
+        <Box display="flex" gap={2} mt={2}>
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={loading}
+            sx={{
+              flex: 1,
+              py: 1.5,
+              borderRadius: 2,
+              fontWeight: 600,
+              background: "#000",
+              color: "#fff",
+              "&:hover": { background: "#333" },
+            }}
+          >
+            {loading ? "Saving..." : "Create Asset"}
+          </Button>
+          <Button
+            type="button"
+            variant="outlined"
+            onClick={() => onCreated && onCreated()}
+            sx={{
+              flex: 1,
+              py: 1.5,
+              borderRadius: 2,
+              fontWeight: 600,
+              background: "#fff",
+              color: "#000",
+              border: "1px solid #000",
+              "&:hover": { background: "#f5f5f5" },
+            }}
+          >
+            Cancel
+          </Button>
+      </Box>
       </Box>
     </form>
   );
